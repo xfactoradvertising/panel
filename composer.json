@@ -1,5 +1,5 @@
 {
-    "name": "serverfireteam/panel",
+    "name": "xfactor/panel",
     "description": "Admin panel for Laravel 5.1 applications",
     "keywords": ["LaravelPanel","Laravel", "Panel", "Crud", "Admin Panel","CMS","administrator", "admin", "backend"],
     "license": "MIT",

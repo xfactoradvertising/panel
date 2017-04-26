@@ -10,8 +10,12 @@ and open the template in the editor.
 
 @charset "utf-8";
 
-
-
+/* stupid brittle hack to remove hard-coded Add button here:
+https://github.com/serverfireteam/rapyd-laravel/blob/ea3c65957e45f2ea398efe457db64392909f4563/views/datagrid.blade.php#L2
+ */
+[class="pull-right"] {
+    display: none;
+}
 
 .photo {
     margin-bottom: 20px;

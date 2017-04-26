@@ -14,6 +14,11 @@
                 
                 @if(is_array(\Serverfireteam\Panel\Link::returnUrls()))
                     @foreach (Serverfireteam\Panel\libs\dashboard::create() as $box)
+
+                    @if ($box['title'] == 'Links')
+                        @continue
+                    @endif
+
                     <div class="col-lg-3 col-md-6">
                         <div class="panel ">
                             <div class="panel-heading">
@@ -31,7 +36,7 @@
                                 <div class="panel-footer">
 
                                      <a href='{{$box['showListUrl']}}' class="pull-left">{{ \Lang::get('panel::fields.showList') }} <i class="icon ic-chevron-right"></i></a>
-                                    <div class="pull-right"> <a class="add " href="{{$box['addUrl']}}">{{ \Lang::get('panel::fields.Add') }}  </a></div>
+                                    {{--<div class="pull-right"> <a class="add " href="{{$box['addUrl']}}">{{ \Lang::get('panel::fields.Add') }}  </a></div>--}}
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -42,6 +47,7 @@
 
 
             </div>
+            <!-- TODO use this to alert about blueprint updates? -->
             <div class="row hide update">
                 <div class="alert alert-warning" role="alert">
                     <a href="http://laravelpanel.com/docs/master/update" class="alert-link"></a>

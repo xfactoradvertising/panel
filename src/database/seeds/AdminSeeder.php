@@ -1,21 +1,42 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace Serverfireteam\Panel\Database\Seeds;
+
+use Illuminate\Database\Seeder;
+
+use Serverfireteam\Panel\Admin;
 
 class AdminSeeder extends Seeder{
     
     public function run(){
-        
-        DB::table('admins')->delete();
-        
-        DB::table('admins')->insert(
-              array('email'=>'admin@admin.com',
-                   'password'=>'123')  
+
+        $users = array(
+            [
+                'first_name' => 'XFactor',
+                'last_name' => 'Admin',
+                'email' => 'support@xfactoradvertising.com',
+                'password' => 'pass3fish',
+            ],
+            [
+                'first_name' => 'Josh',
+                'last_name' => 'Guice',
+                'email' => 'josh@wizory.com',
+                'password' => 'jeer5-dearer',
+            ],
         );
+
+        foreach ($users as $user) {
+            $admin = Admin::firstOrCreate(array(
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'email' => $user['email'],
+            ));
+
+            if ($admin->wasRecentlyCreated) {
+                $admin->password = bcrypt($user['password']);
+                $admin->save();
+            }
+
+        }
     }
-    
 }

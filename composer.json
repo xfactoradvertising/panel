@@ -34,6 +34,7 @@
             "src/views",
             "src/models",
             "src/database/migrations",
+            "src/database/seeds",
   	        "src/Serverfireteam/Panel/Commands"
         ],
         "psr-0": {

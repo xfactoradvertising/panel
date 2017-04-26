@@ -28,8 +28,8 @@ class PanelServiceProvider extends ServiceProvider
         // 'Maatwebsite\Excel\ExcelServiceProvider'
         $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
 
-	// Barryvdh\Elfinder\ElfinderServiceProvider
-	$this->app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
+	    // Barryvdh\Elfinder\ElfinderServiceProvider
+	    $this->app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
 
         /*
          * Create aliases for the dependency.
@@ -89,8 +89,9 @@ class PanelServiceProvider extends ServiceProvider
 
         include __DIR__."/../../routes.php";
 
-	$this->loadTranslationsFrom(base_path() . '/vendor/serverfireteam/panel/src/lang', 'panel');
+    	$this->loadTranslationsFrom(base_path() . '/vendor/xfactor/panel/src/lang', 'panel');
         $this->loadTranslationsFrom(base_path() . '/vendor/serverfireteam/rapyd-laravel/lang', 'rapyd');
+        $this->loadTranslationsFrom(base_path() . '/vendor/xfactor/panel/src/lang', 'rapyd');
 
         AliasLoader::getInstance()->alias('Serverfireteam', 'Serverfireteam\Panel\Serverfireteam');
     }

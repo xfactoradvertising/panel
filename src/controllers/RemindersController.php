@@ -41,7 +41,8 @@ class RemindersController extends Controller {
             \Config::set('auth.password.email', 'panelViews::resetPassword');
 
 	    $response = \Password::sendResetLink(\Input::only('email'), function($message) {
-		$message->subject('Password Reminder');
+	        $message->from('support@xfactoradvertising.com');
+		    $message->subject('Password Reminder');
 	    });
 
             switch ($response) {

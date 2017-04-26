@@ -34,16 +34,17 @@ class CrudCommand extends Command {
 	public function fire()
 	{
        
-            $this->info('            [ ServerFireTeam Panel Crud Generator ]       ');
+            $this->info('[ Blueprint Panel Crud Generator ]');
 
             $crudName = $this->argument('name');
             
             $this->call('panel:createmodel', ['name' => $crudName]);
             
             $this->call('panel:createcontroller', ['name' => $crudName]);
-            
-            $link = new \Serverfireteam\Panel\Link();
-            $link->getAndSave($crudName, $crudName . 's');
+
+            $link = \Serverfireteam\Panel\Link::firstOrNew(['url' => $crudName]);
+            //$link = new \Serverfireteam\Panel\Link();
+            $link->getAndSave($crudName, ucfirst($crudName));
             $link->save();
             
             if ( !\Schema::hasTable($crudName) ){

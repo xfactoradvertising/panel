@@ -35,15 +35,21 @@ class PanelCommand extends Command {
 	 */
 	public function fire()
 	{
-            $this->info('        [ Welcome to ServerFireTeam Panel Installation ]       ');
+            $this->info('[ Blueprint Panel Installation ]       ');
 
-	    $this->call('elfinder:publish');
+	        $this->call('elfinder:publish');
 
-            $this->call('vendor:publish');
+            // silly, but --force doesn't work unless it's a key (i.e. downstream doesn't support mixed arrays) :(
+            $this->call('vendor:publish', array(
+                '--force' => true,
+                '--provider' => 'Serverfireteam\Panel\PanelServiceProvider',
+            ));
 
-            $this->call('migrate', array('--path' => 'vendor/serverfireteam/panel/src/database/migrations'));
+            $this->call('migrate', array('--path' => 'vendor/xfactor/panel/src/database/migrations'));
 
             $this->call('db:seed', array('--class' => '\Serverfireteam\Panel\LinkSeeder'));
+
+            $this->call('db:seed', array('--class' => '\Serverfireteam\Panel\Database\Seeds\AdminSeeder'));
 	}
 
 	/**

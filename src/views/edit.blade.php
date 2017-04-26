@@ -12,4 +12,6 @@
     <p>
         {!! $edit !!}
     </p>
+
+    <input class="btn btn-default" type="button" value="Back" onclick="history.back();">
 @stop

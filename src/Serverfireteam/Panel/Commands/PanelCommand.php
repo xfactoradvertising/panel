@@ -39,7 +39,6 @@ class PanelCommand extends Command {
 
 	        $this->call('elfinder:publish');
 
-            // silly, but --force doesn't work unless it's a key (i.e. downstream doesn't support mixed arrays) :(
             $this->call('vendor:publish', array(
                 '--force' => true,
                 '--provider' => 'Serverfireteam\Panel\PanelServiceProvider',

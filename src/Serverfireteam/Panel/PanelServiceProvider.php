@@ -78,6 +78,11 @@ class PanelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/panel.php' => config_path('panel.php'),
         ]);
+
+        $this->publishes([
+            __DIR__ . '/../../database/seeds/' => database_path('seeds'),  # using the panel admin seeder for now
+            __DIR__ . '/../../database/migrations/' => database_path('migrations')
+        ], 'database');
     }
 
     public function boot()

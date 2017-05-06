@@ -44,11 +44,20 @@ class PanelCommand extends Command {
                 '--provider' => 'Serverfireteam\Panel\PanelServiceProvider',
             ));
 
-            $this->call('migrate', array('--path' => 'vendor/xfactor/panel/src/database/migrations'));
+            $this->call('migrate', array(
+                '--path' => 'vendor/xfactor/panel/src/database/migrations',
+                '--force' => true,
+            ));
 
-            $this->call('db:seed', array('--class' => '\Serverfireteam\Panel\LinkSeeder'));
+            $this->call('db:seed', array(
+                '--class' => '\Serverfireteam\Panel\LinkSeeder',
+                '--force' => true,
+            ));
 
-            $this->call('db:seed', array('--class' => '\Serverfireteam\Panel\Database\Seeds\AdminSeeder'));
+            $this->call('db:seed', array(
+                '--class' => '\Serverfireteam\Panel\Database\Seeds\AdminSeeder',
+                '--force' => true,
+            ));
 	}
 
 	/**

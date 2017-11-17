@@ -9,9 +9,9 @@ class ExportImportController extends Controller {
     protected $failed = false;
 
     public function export($entity, $fileType) {
-
+        set_time_limit ( 60 );
         $appHelper = new libs\AppHelper();
-        
+
 	$className = $appHelper->getNameSpace() . $entity;
 	$data      = $className::get();
 	if (strcmp($fileType, "excel") == 0) {
@@ -27,7 +27,7 @@ class ExportImportController extends Controller {
     public function import($entity) {
 
         $appHelper = new libs\AppHelper();
-        
+
 	$className = $appHelper->getNameSpace() . $entity;
 	$model     = new $className;
 	$table     = $model->getTable();

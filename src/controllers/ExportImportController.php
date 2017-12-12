@@ -12,16 +12,25 @@ class ExportImportController extends Controller {
         set_time_limit ( 60 );
         $appHelper = new libs\AppHelper();
 
-	$className = $appHelper->getNameSpace() . $entity;
-	$data      = $className::get();
-	if (strcmp($fileType, "excel") == 0) {
-		$excel = \App::make('Excel');
-		\Excel::create($entity, function($excel) use ($data) {
-			$excel->sheet('Sheet1', function($sheet) use ($data) {
-				$sheet->fromModel($data);
-			});
-		})->export('xls');
-	}
+		$className = $appHelper->getNameSpace() . $entity;
+
+		ini_set('memory_limit','1024M');
+
+		\Excel::create('Report', function($excel) use ($className) {
+	        $excel->sheet('report', function($sheet) use($className) {
+
+				// Add the column headers.
+				$columns = array_keys($className::first()->toArray());
+				$sheet->appendRow($columns);
+
+				foreach ( $className::all()->chunk(500) as $chunk) {
+					foreach ($chunk as $row) {
+						$sheet->appendRow($row->toArray());
+					}
+				}
+
+	        });
+	    })->export('csv');
     }
 
     public function import($entity) {

@@ -9,7 +9,7 @@ class ExportImportController extends Controller {
     protected $failed = false;
 
     public function export($entity, $fileType) {
-        set_time_limit ( 60 );
+        set_time_limit ( 0 );
         $appHelper = new libs\AppHelper();
 
 		$className = $appHelper->getNameSpace() . $entity;

@@ -9,28 +9,22 @@ class ExportImportController extends Controller {
     protected $failed = false;
 
     public function export($entity, $fileType) {
-        set_time_limit ( 0 );
         $appHelper = new libs\AppHelper();
 
-		$className = $appHelper->getNameSpace() . $entity;
+        $className = $appHelper->getNameSpace() . $entity;
 
-		ini_set('memory_limit','1024M');
+        $modelData = $className::all();
 
-		\Excel::create('Report', function($excel) use ($className) {
-	        $excel->sheet('report', function($sheet) use($className) {
+        ini_set('max_execution_time', 300);
+        ini_set('memory_limit', '1024M');
 
-				// Add the column headers.
-				$columns = array_keys($className::first()->toArray());
-				$sheet->appendRow($columns);
+        \Excel::create('Report', function ($excel) use ($modelData) {
+            $excel->sheet('report', function ($sheet) use ($modelData) {
 
-				foreach ( $className::all()->chunk(500) as $chunk) {
-					foreach ($chunk as $row) {
-						$sheet->appendRow($row->toArray());
-					}
-				}
+                $sheet->fromModel($modelData);
 
-	        });
-	    })->export('csv');
+            });
+        })->download('csv');
     }
 
     public function import($entity) {

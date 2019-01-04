@@ -1,0 +1,34 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+
+class DummyClass extends Model {
+
+    protected $table = 'DummyClass';
+
+
+
+	public static function panelExport() {
+
+		return self::all()->filter(function($item) {
+			$item->setHidden([
+				'ip_address',
+				'phone',
+				'first_name',
+				'middle_initial',
+				'last_name',
+				'email',
+				'address1',
+				'address2',
+				'city',
+				'state',
+				'zip',
+				'country',
+			]);
+			return $item;
+		});
+	}
+
+}

@@ -60,7 +60,7 @@ class CreateControllerPanelCommand extends GeneratorCommand {
 	 *
 	 * @return void
 	 */
-	public function fire()
+	public function handle()
 	{
             $name = $this->parseName($this->getNameInput()) . 'Controller';
 

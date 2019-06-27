@@ -31,7 +31,7 @@ class CrudCommand extends Command {
 	 * Execute the console command.
 	 *
 	 */
-	public function fire()
+	public function handle()
 	{
        
             $this->info('[ Blueprint Panel Crud Generator ]');

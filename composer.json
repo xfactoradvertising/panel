@@ -21,6 +21,12 @@
         "email": "hope2end@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:zofe/rapyd-laravel.git"
+        }  
+    ],
     "require": {
         "php": ">=5.4.0",        
         "illuminate/support": "~5.5",

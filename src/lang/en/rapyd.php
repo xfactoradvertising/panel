@@ -5,5 +5,7 @@ return array(
     'conf_delete' => 'Are you sure you want to permanently delete this record?',
     'undo' => 'Cancel',
     'delete' => 'Delete',
-    'deleted' => 'Deleted.'
+    'deleted' => 'Deleted.',
+    'save' => 'Save',
+    'err_unknown' => 'Unknown Error',
 );

@@ -43,5 +43,8 @@
         {!! $edit !!}
     </p>
 
-    <input class="btn btn-default" type="button" value="Back" onclick="history.back();">
+    <!-- only show back button on non-user panels (super hacky) -->
+    @if ($edit->label != 'User')
+        <input class="btn btn-default" type="button" value="Back" onclick="history.back();">
+    @endif
 @stop
